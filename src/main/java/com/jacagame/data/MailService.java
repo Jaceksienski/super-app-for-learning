@@ -1,5 +1,8 @@
-package com.jacagame.game;
+package com.jacagame.data;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -12,6 +15,9 @@ import javax.mail.internet.MimeMessage;
 public class MailService {
 
     private JavaMailSender javaMailSender;
+
+    Logger LOGGER = LogManager.getLogger();
+
 
     @Autowired
     public MailService(JavaMailSender javaMailSender) {
@@ -28,6 +34,7 @@ public class MailService {
         mimeMessageHelper.setSubject(subject);
         mimeMessageHelper.setText(text, isHtmlContent);
         javaMailSender.send(mimeMessage);
+        LOGGER.log(Level.INFO, "Sending mail to " + to + ", subject: " + subject);
     }
 }
 

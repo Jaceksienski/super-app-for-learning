@@ -1,4 +1,4 @@
-package com.jacagame.game.token;
+package com.jacagame.data.models;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface TokenRepo extends JpaRepository<Token, Long> {
-    Optional<Token> findByValue(String value);
-
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByUserName(String userName);
 }
