@@ -8,7 +8,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -20,7 +22,6 @@ public class UserService {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
 
-
     public void addUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles("ROLE_USER");
@@ -29,13 +30,8 @@ public class UserService {
     }
 
     public User getUser(String name) {
-        User u = userRepository.findByUserName(name).get();
-        return u;
+        return userRepository.findByUserName(name).get();
     }
-
-//    public void getUser(Long id) {
-//        userRepository.findById(id);
-//    }
 
     public void getUser(Long id) {
         userRepository.findById(id);
@@ -53,11 +49,11 @@ public class UserService {
         tokenRepo.save(token);
         String url = "http://localhost:8080/token?value=" + tokenValue;
 
-//        try {
-//            mailService.sendMail(user.getUserName(), "Potwierdz",url,false);
-//        } catch (MessagingException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            mailService.sendMail(user.getEmail(), "Potwierdz", url, false);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 
     public void updateEmail(Long id, Map<String, String> updateEmailMap) {
