@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.mail.MessagingException;
 import java.util.Map;
 import java.util.UUID;
 
@@ -29,9 +28,14 @@ public class UserService {
         sendToken(user);
     }
 
-    public void getUser(String name) {
-        userRepository.findByUserName(name);
+    public User getUser(String name) {
+        User u = userRepository.findByUserName(name).get();
+        return u;
     }
+
+//    public void getUser(Long id) {
+//        userRepository.findById(id);
+//    }
 
     public void getUser(Long id) {
         userRepository.findById(id);

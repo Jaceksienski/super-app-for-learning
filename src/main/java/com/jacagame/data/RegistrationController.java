@@ -36,7 +36,7 @@ public class RegistrationController {
     public String register(User user) {
         userService.addUser(user);
         playerService.addPlayer(user);
-        return ("registration/endregister.html");
+        return ("registration/endregister");
     }
 
 
@@ -47,7 +47,7 @@ public class RegistrationController {
         user.setActive(true);
         userRepository.save(user);
 
-        return ("hello.html");
+        return ("main.html");
     }
 
 

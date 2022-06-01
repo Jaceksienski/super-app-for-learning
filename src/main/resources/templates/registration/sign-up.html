@@ -8,10 +8,15 @@
 <body>
 <h2>Register</h2>
 <form th:action="@{/register}" method="post">
+
+
     Login:
     <input type="text" name="userName">
     Password:
-    <input type="text" name="password">
+    <input type="password" name="password">
+    Email:
+    <input type="email" name="email">
+
     <input type="submit" value="Sign up!">
 
 </form>

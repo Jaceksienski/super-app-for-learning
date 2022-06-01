@@ -1,4 +1,4 @@
-package com.jacagame.data;
+package com.jacagame.data.models;
 
 import com.jacagame.data.models.UserService;
 import com.jacagame.data.player.PlayerService;
@@ -18,6 +18,7 @@ public class UserController {
 
     UserService userService;
     PlayerService playerService;
+
 
     @GetMapping
     public void findUser(@RequestParam Long id) {

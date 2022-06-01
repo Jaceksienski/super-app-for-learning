@@ -10,13 +10,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MyUserDetails implements UserDetails {
-
+    private Long id;
     private String userName;
     private String password;
     private boolean active;
     private List<GrantedAuthority> authorityList;
 
     public MyUserDetails(User user) {
+        this.id = user.getId();
         this.userName = user.getUserName();
         this.password = user.getPassword();
         this.active = user.isActive();
@@ -25,6 +26,13 @@ public class MyUserDetails implements UserDetails {
                 .collect(Collectors.toList());
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+    <link href="/css/style1.css" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/js/timer.js}"></script>
+</head>
+<body th:onload="countingDown()">
+
+<h1>WITAM W GRZE</h1>
+
+<div id="player">
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="gold">gold</th>
+            <th scope="lvl">lvl</th>
+            <th scope="exp">exp</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="u : ${player}">
+            <td th:text="${u.gold}"></td>
+            <td th:text="${u.lvl}"></td>
+            <td th:text="${u.exp}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div id="clock"></div>
+
+<script th:inline="javascript">
+    countingDown()
+
+</script>
+
+
+</body>
+</html>
